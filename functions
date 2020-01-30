@@ -1,0 +1,24 @@
+
+
+
+function check_data_type
+{
+
+  echo "please enter it' datatype number or string:"
+  read data_type
+
+    if [ $data_type == "number" ];then
+     echo "your datatype is number" 
+
+     elif [ $data_type == "string" ] 
+     then
+     echo "your datatype is string"
+
+     else
+     echo "this type is not supported" 
+
+  fi
+        data_types+=("$data_type")
+        echo "your pk type is recorded"
+
+}
