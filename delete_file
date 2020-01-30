@@ -1,6 +1,0 @@
-#!/bin/bash
-echo "please enter the name of table you want to delete:"
-read filename
-`rm $filename`
-echo "your $filename was deleted"
-
