@@ -33,37 +33,57 @@ function get_data_of_table
 																				   if [[ "$line" =~ ^[1-9]+$ ]]
 																				   then
 																				   line=$((line+2))
-																				   
+     new_arr=()																				   
 																				    edit=$(sed -n "$line p" "$filename")
 IFS=":" read -r -a edit_arr <<< "$edit"
 length="${#edit_arr[@]}"
-for ((i=0;i<length;i++))
+ 
+for ((j=0;j<length;j++))
  do
- echo "this column data type is ${col_types[$i]} "
- echo "your old value is ${edit_arr[$i]}"
- echo "enter your new value "
+ echo "this column data type is ${col_types[$j]} "
+ echo "your old value is ${edit_arr[$j]}"
+  echo "enter your new value of $j "
   read value
-   if [ ${col_types[$i]} = "number" ]
+   if [ ${col_types[$j]} = "number" ]
    then
 
    reg="^[0-9]+$"
-
-   elif [ ${col_types[$i]} = "string" ]
-   then
-   reg="^[a-zA-Z]+$"
-   else
-    echo "not vaid type"
-   fi
    if [[ "$value" =~ $reg ]]
    then
    echo "you entered a valid value"
-  printf '%s' "$value:" >>"$filename"
-  sed -i "$line d" "$filename"
+
+     new_arr+=("$value")
+   sed -i "$line s/${edit_arr[$j]}/$value/g" "$filename"
+     # sed -i "$line d" "$filename"
+   # ex -s -c "$line i|${new_arr[$j]}"  -c x "$filename"
+
    else
    echo "not valid"
    fi
 
+   elif [ ${col_types[$j]} = "string" ]
+   then
+   reg="^[a-zA-Z]+$"
+   if [[ "$value" =~ $reg ]]
+   then
+   echo "you entered a valid value"
+   new_arr+=("$value")
+   sed -i "$line s/${edit_arr[$j]}/$value/g" "$filename"
+    #sed -i "$line d" "$filename"
+    #ex -s -c "$line i|${new_arr[$j]}"  -c x "$filename"
+
+
+   else
+   echo "not valid"
+   fi
+
+   else
+    echo "not vaid type"
+   fi
+
   done
+    echo "${new_arr[@]}"
+
   printf "\n"
 																				    echo "your record is edit "
 																				   elif [[ -z "$line" ]]

@@ -21,17 +21,70 @@ function file_exist
    fi
 
 }
+function check_pk
+{
+length="${#data[@]}"
+repeated=0
+  for ((i=0;i<length;i++)) 
+  do
+     if [[ "${data[$i]}" == "$1" ]]
+     then
+        repeated=1
+        
+     else
+         repeated=0
+
+     fi 
+  done
+  return $repeated  
+
+}
+
+
 
 function insert_check_primary
 {
+   
    echo "this column data type is ${col_types[0]} "
    echo "enter the primary value"
    read pvalue
    #with no space +
-   data+=("$pvalue")
+       check_pk "$pvalue"
+    return_value="$?"
+    if [[ "$return_value" -eq 1 ]]
+    then
+    echo "this is a primary key and must not be repeated"
+    else
+     echo "$return_value"
+     echo "valid data"
+      data+=("$pvalue")
+     fi 
 
+  
+   
 }
 
+function check_data_type
+{
+
+  echo "please enter it' datatype number or string:"
+  read data_type
+
+    if [ $data_type == "number" ];then
+     echo "your datatype is number" 
+
+     elif [ $data_type == "string" ] 
+     then
+     echo "your datatype is string"
+
+     else
+     echo "this type is not supported" 
+
+  fi
+        data_types+=("$data_type")
+        echo "your pk type is recorded"
+
+}
 function insert_data
 {
  reg=""
@@ -88,6 +141,7 @@ for value in "${data[@]}"
   printf '%s' "$value:" >>"$filename"
   done
  printf "\n" >>"$filename"
+
 elif [[ -z "$filename" ]]
 then
 echo "your must enter table name"
