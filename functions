@@ -6,19 +6,36 @@ function check_data_type
 
   echo "please enter it' datatype number or string:"
   read data_type
-
+    while true
+    do
     if [ $data_type == "number" ];then
      echo "your datatype is number" 
+     data_types+=("$data_type")
+     echo "your pk type is recorded"
+     break
 
      elif [ $data_type == "string" ] 
      then
      echo "your datatype is string"
+     data_types+=("$data_type")
+     echo "your pk type is recorded"
+     break
 
      else
      echo "this type is not supported" 
 
   fi
-        data_types+=("$data_type")
-        echo "your pk type is recorded"
+
+ done
+
+}
+function file_exist
+{
+   if test -f "$filename"
+   then
+   return 1
+   else
+   return 0
+   fi
 
 }
