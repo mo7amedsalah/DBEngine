@@ -36,7 +36,7 @@ function check_index_primary_key
 
     if [[  $pk_index =~ ^[0-9]+$ ]]
        then
-       echo "$pk_index" >>"$filename"
+      # echo "$pk_index" >>"$filename"
        break
     elif [[ -z $pk_index ]]
         then
@@ -90,13 +90,16 @@ function read_column_data
 	      then
 	      echo "your column name must not be empty"
 	      else
+		check_data_type
 	      column_names+=("$column")
-               check_data_type 
+               
               break
+		
 	     fi
 	    
             done
 	    done
+ 
 }
 
 function print_names

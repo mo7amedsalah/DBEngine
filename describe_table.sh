@@ -24,8 +24,8 @@ case $table_name in
 	   if [ $? -eq 0 ]
 		then
             echo "-----------------------------------------------------------------------";
-	    echo "This is The Structure of table $table_name";
-            head -2 $table_name;
+	    echo "This is The Structure of $table_name";
+            awk 'NR > 1 { print }' $table_name;
 	   else 
 		#IF table is not exist
 	      

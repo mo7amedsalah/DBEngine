@@ -23,6 +23,7 @@ function check_data_type
 
      else
      echo "this type is not supported" 
+   break
 
   fi
 

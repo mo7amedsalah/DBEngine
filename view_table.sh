@@ -25,14 +25,14 @@ case $table_name in
 	then 
             echo "-----------------------------------------------------------------------";
 	    echo "This are The names of columns in $table_name";
-            head -1 $table_name;
+            awk 'NR == 2 { print }' $table_name;
 	    echo "-----------------------------------------------------------------------";
 	    echo "This is The data type for every column in order of table $table_name";
 	    echo "-----------------------------------------------------------------------";
-	     awk 'NR == 2 { print }' $table_name;
+	     awk 'NR == 3 { print }' $table_name;
 	    echo "-----------------------------------------------------------------------";
 	    echo "This is The data for every column in order of table $table_name";
-              awk 'NR > 2 { print }' $table_name;
+              awk 'NR > 3 { print }' $table_name;
 	   else 
 		#IF table is not exist
 	      

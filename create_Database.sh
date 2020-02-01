@@ -1,16 +1,11 @@
 #!/bin/bash
 LC_ALL=C
 shopt -s extglob
-function CheckIfDatabaseExist
-{
-	if [ -d "$database_name" ]; then
-    		return 0;
-  	else
-    		return 1;
-  	fi
-}
+
 
 clear
+while true
+do
  
 echo "Enter Database Name!!!!!!!!!!!";
 read database_name;
@@ -30,7 +25,9 @@ case $database_name in
 	#the valid regix for name..	
 	+([a-zA-Z])) 
 		#check if tha database created before ...
-	   if CheckIfDatabaseExist; then 
+         source CheckIfDatabaseExist.sh ${database_name}
+	   if [ $? -eq 0 ] 
+            then 
             echo "-----------------------------------------------------------------------";
             echo "This database was created before!!!!!!!";
 	   else 
@@ -38,12 +35,14 @@ case $database_name in
 	      mkdir $database_name;
 	      echo "-----------------------------------------------------------------------";	
 	      echo "Database created successfully!!!!!!!!!";
+               source BashProject.sh
 	   fi
+         
 	  ;;
 
 	*) echo "Invalid database name!! name of database must be lower or upper letters or mix and do not have whitespaces!!!! "
 esac
-
+done
 
 		
 	
