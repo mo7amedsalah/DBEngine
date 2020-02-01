@@ -1,6 +1,4 @@
 
-
-
 function check_data_type
 {
 
@@ -38,5 +36,16 @@ function file_exist
    else
    return 0
    fi
+
+}
+function get_structure_of_table
+{
+	 #must $ not have a space and ifs to separate files
+	  pk_index=$(sed -n 1p "$filename") 
+           read -r pk<<< "$pk_index"
+	  names=$(sed -n 2p "$filename")
+	  IFS=':' read -r -a col_names <<< "$names"
+	  types=$(awk 'NR == 3' "$filename")
+	  IFS=':' read -r -a  col_types <<< "$types"
 
 }
