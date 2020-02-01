@@ -20,7 +20,9 @@ case $table_name in
 	+([a-zA-Z])) 
 	
 		#IF table is Exist show the structure...
-	   if source check_table_exist.sh; then 
+	   source check_table_exist.sh ${table_name}
+	   if [ $? -eq 0 ]
+		then
             echo "-----------------------------------------------------------------------";
 	    echo "This is The Structure of table $table_name";
             head -2 $table_name;

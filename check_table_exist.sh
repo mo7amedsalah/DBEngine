@@ -4,9 +4,12 @@ shopt -s extglob
 
 function check_table_exist
 {
-  if [ -f "$table_name" ]; then
+	
+  if [ -f $1 ] 
+	then
     return 0;
   else
     return 1;
   fi
 }
+check_table_exist $1
