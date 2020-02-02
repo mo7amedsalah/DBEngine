@@ -45,4 +45,5 @@ case $table_name in
                  echo "Invalid table name!! name of table must be lower or upper letters or mix and do not have whitespaces!!!! "
 esac
 done
+cd /home/salah/bash-Project/DBEngine;
 source /home/salah/bash-Project/DBEngine/DatabaseEngine.sh

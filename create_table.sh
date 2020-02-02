@@ -163,7 +163,7 @@ check_table
         fi
         done
                
-            
+ 	   cd /home/salah/bash-Project/DBEngine;           
            source /home/salah/bash-Project/DBEngine/DatabaseEngine.sh
 
 

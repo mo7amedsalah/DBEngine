@@ -2,8 +2,10 @@
 LC_ALL=C
 shopt -s extglob
 clear
+source /home/salah/bash-Project/DBEngine/use_Database.sh;
 while true
 do
+
 echo "Enter Table Name!!!!!!!!!!!";
 IFS= read -r table_name
 case $table_name in 
@@ -22,7 +24,7 @@ case $table_name in
 	+([a-zA-Z])) 
 	
 		#IF table is Exist show the structure...
-	source check_table_exist.sh ${table_name}
+	source /home/salah/bash-Project/DBEngine/check_table_exist.sh ${table_name}
 	   if [ $? -eq 0 ] 
 	then 
             echo "-----------------------------------------------------------------------";
@@ -38,17 +40,19 @@ case $table_name in
             echo "-----------------------------------------------------------------------";
               awk 'NR > 3 { print }' $table_name;
 	   echo "-----------------------------------------------------------------------";
-		source BashProject.sh
+		source /home/salah/bash-Project/DBEngine/DatabaseEngine.sh;
 	   else 
 		#IF table is not exist
 	      
 	      echo "-----------------------------------------------------------------------";	
 	      echo "The table is not exist";
+		source /home/salah/bash-Project/DBEngine/DatabaseEngine.sh
 	   fi
 	  ;;
 
 	*) echo "Invalid Table name!! name of Table must be lower or upper letters or mix and do not have whitespaces!!!! "
 esac
 done
-
+cd /home/salah/bash-Project/DBEngine;
+source /home/salah/bash-Project/DBEngine/DatabaseEngine.sh;
 

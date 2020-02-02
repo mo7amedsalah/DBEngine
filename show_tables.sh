@@ -12,12 +12,14 @@ function list_Tables
   do
     if [ -f ./"$i" ]; then
       echo $i;
-	source BashProject.sh
+	
     fi
   done
   echo "-----------------------------------------------------------------------!!";
 }
 
 list_Tables;
+cd /home/salah/bash-Project/DBEngine;
+source /home/salah/bash-Project/DBEngine/DatabaseEngine.sh;
 
 

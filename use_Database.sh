@@ -36,9 +36,11 @@ case $database_name in
 		#if database does not exist..
 	      echo "-----------------------------------------------------------------------"; 
               echo "No database with this name!!!!!!!!!!"
+		source /home/salah/bash-Project/DBEngine/DatabaseEngine.sh;
 	   fi
 	  ;;
 
 	*) echo "Invalid database name!! name of database must be lower or upper letters or mix and do not have whitespaces!!!! "
 esac
+
 
