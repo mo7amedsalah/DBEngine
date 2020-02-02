@@ -3,7 +3,7 @@ function get_Data
 {
   mydata=$(sed '1,3d' "$filename")
   echo "$mydata"
-  echo "enter the line you want to edit"
+  echo "enter the line you want to delete"
   read line
     if [[ $line -eq 0 ]]
     then
@@ -13,8 +13,8 @@ function get_Data
   then
   line=$((line+3))
    #i to remove from source
-    sed -i "$line d" "$filename"
-    echo "your record is deleted "
+    awk "NR==$line" "$filename"
+
   elif [[ -z "$line" ]]
   then
   echo "must not be empty"
@@ -30,6 +30,7 @@ function get_Data
 
 
 
+
 while true
 do
 echo "enter your file:"
@@ -42,6 +43,7 @@ if [[ "$result" -eq 1 ]]
 then
 echo "your file found"
   get_Data
+   break
 else
 echo "your file does not exist"
 fi

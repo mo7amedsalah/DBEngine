@@ -5,35 +5,7 @@ data=()
 source "functions"
 
 
-function check_pk
-{
 
-	  ids=$(awk -F":" 'NR>3 {print $pk}' "$filename" | cut -d":" -f$pk | tr '\n' ' ')
-	     echo "$ids"
-	    read -r -a myids <<< "$ids"
-	    echo "myids is ${myids[@]}"
-	   
-	   length="${#myids[@]}" 
-	  flag=0
-	   
-	  for ((i=0;i<length;i++)) 
-	  do
-
-	     if [[ ${myids[$i]} == $1 ]]
-	     then
-		flag=1
-		break;
-
-		
-	     else
-		 flag=0
-
-	     fi 
-	  done
-	  return $flag
-	 
-
-}
 
 
 # erroe regex / is accepted

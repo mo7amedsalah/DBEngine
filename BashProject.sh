@@ -32,7 +32,10 @@ select choice in CreateDB CreateTable DeleteDB DeleteTables ModifyTable InsertDa
    
      DeleteRecord)
               echo "you want to delete record";;
-     *)
+   
+    
+  
+       *)
             echo "$REPLY is not one of the choices";;
     esac
 
