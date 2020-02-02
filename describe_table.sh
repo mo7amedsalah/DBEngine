@@ -2,6 +2,8 @@
 LC_ALL=C
 shopt -s extglob
 clear
+while true
+do
 echo "Enter Table Name!!!!!!!!!!!";
 IFS= read -r table_name
 case $table_name in 
@@ -25,7 +27,13 @@ case $table_name in
 		then
             echo "-----------------------------------------------------------------------";
 	    echo "This is The Structure of $table_name";
-            awk 'NR > 1 { print }' $table_name;
+            echo "-----------------------------------------------------------------------";
+            awk 'NR == 2 { print }' $table_name;
+	    echo "-----------------------------------------------------------------------";
+	    awk 'NR == 3 { print }' $table_name;
+	    echo "-----------------------------------------------------------------------";
+
+		source BashProject.sh
 	   else 
 		#IF table is not exist
 	      
@@ -36,4 +44,5 @@ case $table_name in
 
 	*) echo "Invalid Table name!! name of Table must be lower or upper letters or mix and do not have whitespaces!!!! "
 esac
+done
 

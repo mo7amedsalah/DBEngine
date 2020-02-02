@@ -1,15 +1,10 @@
 #!/bin/bash
 LC_ALL=C
 shopt -s extglob
-function CheckIfDatabaseExist
-{
-	if [ -d "$database_name" ]; then
-    		return 0;
-  	else
-    		return 1;
-  	fi
-}
+
 clear 
+while true
+do
 echo "Enter Database Name you want delete!!!!!!!!!!!";
 read database_name;
 #validate if name of database is true ..
@@ -28,17 +23,21 @@ case $database_name in
 	#the valid regix for name..	
 	+([a-zA-Z])) 
 		#check if tha database exist...
-	     if CheckIfDatabaseExist; then 
+	     source CheckIfDatabaseExist.sh ${database_name}
+	      if [ $? -eq 0 ]
+		then
                  #delete database..
                  rm -R $database_name;
                  echo "-----------------------------------------------------------------------"; 
 	         echo "Database deleted!!!!!!!!!"
+		  source BashProject.sh		
              else
                  echo "-----------------------------------------------------------------------"; 
                  echo "No database with this name!!!!!!!!!!"
              fi
-          ;;
+                                                                                    ;;   
 	*)
                  echo "-----------------------------------------------------------------------"; 
                  echo "Invalid database name!! name of database must be lower or upper letters or mix and do not have whitespaces!!!! "
 esac
+done
