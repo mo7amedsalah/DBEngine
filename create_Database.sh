@@ -30,12 +30,13 @@ case $database_name in
             then 
             echo "-----------------------------------------------------------------------";
             echo "This database was created before!!!!!!!";
+             source DatabaseEngine.sh
 	   else 
 		#create database..
 	      mkdir $database_name;
 	      echo "-----------------------------------------------------------------------";	
 	      echo "Database created successfully!!!!!!!!!";
-               source BashProject.sh
+               source DatabaseEngine.sh
 	   fi
          
 	  ;;

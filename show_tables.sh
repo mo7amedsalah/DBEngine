@@ -12,6 +12,7 @@ function list_Tables
   do
     if [ -f ./"$i" ]; then
       echo $i;
+	source BashProject.sh
     fi
   done
   echo "-----------------------------------------------------------------------!!";

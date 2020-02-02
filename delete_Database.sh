@@ -30,7 +30,7 @@ case $database_name in
                  rm -R $database_name;
                  echo "-----------------------------------------------------------------------"; 
 	         echo "Database deleted!!!!!!!!!"
-		  source BashProject.sh		
+		  source DatabaseEngine.sh		
              else
                  echo "-----------------------------------------------------------------------"; 
                  echo "No database with this name!!!!!!!!!!"

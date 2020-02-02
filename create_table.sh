@@ -3,7 +3,9 @@ re='^[a-zA-Z]+$'
 column_names=()
 data_types=()
 
-source "functions"
+source /home/salah/bash-Project/DBEngine/"functions"
+source /home/salah/bash-Project/DBEngine/use_Database.sh ;
+
 function check_column_number
 {
 	while true
@@ -160,7 +162,8 @@ check_table
            
         fi
         done
+               
             
-./BashProject.sh
+           source /home/salah/bash-Project/DBEngine/DatabaseEngine.sh
 
 

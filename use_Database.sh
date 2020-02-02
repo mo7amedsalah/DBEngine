@@ -32,7 +32,6 @@ case $database_name in
 		#check if tha database created before ...
 	   if CheckIfDatabaseExist; then 
                cd $database_name;
-	       . ../create_table.sh;
 	   else 
 		#if database does not exist..
 	      echo "-----------------------------------------------------------------------"; 

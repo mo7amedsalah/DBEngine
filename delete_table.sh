@@ -6,6 +6,7 @@ LC_ALL=C
 shopt -s extglob
 
 clear 
+source /home/salah/bash-Project/DBEngine/use_Database.sh ;
 while true
 do
 echo "Enter Table Name you want delete!!!!!!!!!!!";
@@ -26,14 +27,14 @@ case $table_name in
 	#the valid regix for name..	
 	+([a-zA-Z])) 
 		#check if tha table exist...
-	     source check_table_exist.sh ${table_name}
+	     source /home/salah/bash-Project/DBEngine/check_table_exist.sh ${table_name}
 	      if [ $? -eq 0 ]
 		then
                  #delete table..
                  rm -R $table_name;
                  echo "-----------------------------------------------------------------------"; 
 	         echo "table deleted!!!!!!!!!"
-		  source BashProject.sh		
+		  source /home/salah/bash-Project/DBEngine/DatabaseEngine.sh		
              else
                  echo "-----------------------------------------------------------------------"; 
                  echo "No table with this name!!!!!!!!!!"
@@ -44,3 +45,4 @@ case $table_name in
                  echo "Invalid table name!! name of table must be lower or upper letters or mix and do not have whitespaces!!!! "
 esac
 done
+source /home/salah/bash-Project/DBEngine/DatabaseEngine.sh

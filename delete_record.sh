@@ -1,9 +1,10 @@
 
 function get_Data
 {
+  echo "The table before deleting!!!!!!!!!!!!!!"
   mydata=$(sed '1,2d' "$filename")
   echo "$mydata"
-  echo "enter the line you want to delete"
+  echo "enter the line you want to delete!!!!!!!!!!!"
   read line
     if [[ $line -eq 0 ]]
     then
@@ -14,7 +15,10 @@ function get_Data
   line=$((line+2))
    #i to remove from source
     sed -i "$line d" "$filename"
-    echo "your record is deleted "
+    echo "your record is deleted!!!!!!!!!!!!!"
+    echo "the table after deleting!!!!!!!!!!!!"
+    mydata=$(sed '1,2d' "$filename")
+    echo "$mydata"
   elif [[ -z "$line" ]]
   then
   echo "must not be empty"
