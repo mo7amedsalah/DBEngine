@@ -141,7 +141,7 @@ while true; do
 		echo "invalid"
 
 	fi
-source $(pwd)/DatabaseEngine.sh
-done
 
-source $(pwd)/DatabaseEngine.sh
+done
+cd ..
+source "DatabaseEngine.sh"

@@ -114,7 +114,7 @@ while true
 do
 	echo "enter your file:"
 	read filename
-	file_exist
+	file_exist ${filename}
 
 	#to check status
 	result="$?"
@@ -134,5 +134,5 @@ do
 fi
 done
 
-
-source $(pwd)/DatabaseEngine.sh
+cd ..
+source "DatabaseEngine.sh";

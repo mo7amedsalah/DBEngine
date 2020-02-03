@@ -17,5 +17,5 @@ function list_Tables {
 }
 
 list_Tables
-
-source $(pwd)/DatabaseEngine.sh;
+cd ..
+source "DatabaseEngine.sh";

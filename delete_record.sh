@@ -18,10 +18,17 @@ function get_Data
   then
   line=$((line+3))
    #i to remove from source
-    sed -i "$line d" "$filename"
-    echo "your record is deleted "
-    echo "---------------------------------"
-    break
+    boy=$(awk "END {print NR}" "$filename")
+		if [ $line -lt $boy ]
+	     then
+	    sed -i "$line d" "$filename"
+	    echo "your record is deleted "
+	    echo "---------------------------------"
+	    break
+	     else
+	     echo "you entered wrong number"
+		break
+             fi
   elif [[ -z "$line" ]]
   then
   echo "must not be empty"
@@ -42,7 +49,7 @@ while true
 do
 echo "enter your file:"
 read filename
-file_exist
+file_exist ${filename}
 
 #to check status
 result="$?"
@@ -55,5 +62,5 @@ else
 echo "your file does not exist"
 fi
 done
-
-source $(pwd)/DatabaseEngine.sh
+cd ..
+source "DatabaseEngine.sh";

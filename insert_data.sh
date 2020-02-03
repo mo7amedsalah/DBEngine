@@ -117,7 +117,7 @@ do
              	  printf "\n" >>"$filename"
                    get_All_Data
 
-		for value in "${data[*]}"
+		for value in "${data[@]}"
 		  do
 		      printf '%s' "$value:" >>"$filename"
                      printf '%s' "$value:"
@@ -135,5 +135,5 @@ do
 	fi
 
 done
-
-source $(pwd)/DatabaseEngine.sh;
+cd ..
+source "DatabaseEngine.sh";

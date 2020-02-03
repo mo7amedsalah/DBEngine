@@ -3,8 +3,8 @@ LC_ALL=C
 shopt -s extglob
 
 clear
-source $(pwd)/functions
-source $(pwd)/use_Database.sh
+source "functions"
+source "use_Database.sh"
 
 
   echo "Enter Table Name you want delete"
@@ -25,13 +25,13 @@ source $(pwd)/use_Database.sh
     #the valid regix for name..
   +([a-zA-Z]))
     #check if tha table exist...
-
-    file_exist 
-    if [ $? -eq 1 ]; then
+source /home/sabreensalama/Desktop/bash/project/DBEngine/functions
+	file_exist ${table_name}
+    if [[ $? -eq 1 ]]; then
       #delete table..
-      rm -R $table_name
-      echo "table deleted"
 
+      rm  $table_name
+      echo "table deleted"
     else
       echo "-----------------------------------------------------"
       echo "No table with this name"
@@ -43,8 +43,8 @@ source $(pwd)/use_Database.sh
     ;;
   esac
 
-done
-source $(pwd)/DatabaseEngine.sh
-cd ..;
-source $(pwd)/DatabaseEngine.sh
-source $(pwd)/DatabaseEngine.sh
+
+
+cd ..
+source "DatabaseEngine.sh";
+

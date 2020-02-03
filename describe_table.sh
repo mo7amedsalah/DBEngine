@@ -2,6 +2,7 @@
 LC_ALL=C
 shopt -s extglob
 clear
+source "functions"
 source $(pwd)/use_Database.sh
 while true; do
 	echo "Enter Table Name!!!!!!!!!!!"
@@ -22,7 +23,7 @@ while true; do
 	+([a-zA-Z]))
 
 		#IF table is Exist show the structure...
-		file_exist
+		file_exist ${table_name}
 		if [ $? -eq 1 ]; then
 			echo "-----------------------------------------------------------------------"
 			echo "This is The Structure of $table_name"
@@ -38,12 +39,12 @@ while true; do
 
 			echo "-----------------------------------------------------------------------"
 			echo "The table is not exist"
-			source $(pwd)/DatabaseEngine.sh
+
 		fi
 		;;
 
 	*) echo "Invalid Table name!! name of Table must be lower or upper letters or mix and do not have whitespaces!!!! " ;;
 	esac
 done
-
-source $(pwd)/DatabaseEngine.sh
+cd ..
+source "DatabaseEngine.sh"
