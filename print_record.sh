@@ -57,7 +57,7 @@ echo "your file does not exist"
 fi
 done
 
-cd ..;
+
 source $(pwd)/DatabaseEngine.sh
 
 

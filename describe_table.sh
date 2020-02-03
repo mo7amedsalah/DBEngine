@@ -22,8 +22,8 @@ while true; do
 	+([a-zA-Z]))
 
 		#IF table is Exist show the structure...
-		source /home/salah/bash-Project/DBEngine/check_table_exist.sh ${table_name}
-		if [ $? -eq 0 ]; then
+		file_exist
+		if [ $? -eq 1 ]; then
 			echo "-----------------------------------------------------------------------"
 			echo "This is The Structure of $table_name"
 			echo "-----------------------------------------------------------------------"
@@ -45,5 +45,5 @@ while true; do
 	*) echo "Invalid Table name!! name of Table must be lower or upper letters or mix and do not have whitespaces!!!! " ;;
 	esac
 done
-cd ..;
+
 source $(pwd)/DatabaseEngine.sh

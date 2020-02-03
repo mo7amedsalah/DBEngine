@@ -4,14 +4,14 @@ re='^[a-zA-Z]+$'
 column_names=()
 data_types=()
 
-source $(pwd)/"functions"
+source $(pwd)/functions
 source $(pwd)/use_Database.sh
 
 function check_column_number() {
 	while true; do
 		echo "Enter Number of columns:"
 		read columnNo
-		if [[ $columnNo =~ ^[0-9]+$ ]]; then
+		if [[ $columnNo =~ ^[1-9]+$ ]]; then
 			echo "you columns number is $columnNo"
 			break
 		elif [[ "$columnNo" =~ $re ]]; then
@@ -27,10 +27,11 @@ function check_column_number() {
 function check_index_primary_key() {
 
 	while true; do
-		echo "Enter index of primary key"
+		echo "Enter index of primary key "
 		read pk_index
-
-		if [[ $pk_index =~ ^[0-9]+$ ]]; then
+          
+                 
+		if [[ $pk_index =~ ^[1-9]+$ ]]; then
 			echo "$pk_index" >>"$filename"
 			break
 		elif [[ -z $pk_index ]]; then
@@ -59,7 +60,6 @@ function primary_key() {
 
 			column_names+=("$primary_key")
 			#array[${#column_names[@]}] = "$primary_key"
-			echo " your key is added "
 			break
 		fi
 	done
@@ -76,6 +76,8 @@ function read_column_data() {
 				echo "your column name must not be empty"
                         elif [[ $primary_key =~ ^[0-9]+$ ]]; then
 			echo "your key must be alphabatic"
+                        elif [[ $primary_key =~ ^[a-zA-Z-9]+$ ]]; then
+			echo "your key is valid"
 			else
 				check_data_type
 				column_names+=("$column")
@@ -139,7 +141,7 @@ while true; do
 		echo "invalid"
 
 	fi
+source $(pwd)/DatabaseEngine.sh
 done
 
-cd ..;
 source $(pwd)/DatabaseEngine.sh

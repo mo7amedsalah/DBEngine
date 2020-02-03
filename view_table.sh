@@ -2,6 +2,7 @@
 LC_ALL=C
 shopt -s extglob
 clear
+source "functions"
 source $(pwd)/use_Database.sh
 while true; do
 
@@ -23,7 +24,7 @@ while true; do
 	+([a-zA-Z]))
 
 		#IF table is Exist show the structure...
-		source /home/salah/bash-Project/DBEngine/check_table_exist.sh ${table_name}
+		file_exist
 		if [ $? -eq 0 ]; then
 			echo "-----------------------------------------------------------------------"
 			echo "This are The names of columns in $table_name"
@@ -52,5 +53,5 @@ while true; do
 	*) echo "Invalid Table name!! name of Table must be lower or upper letters or mix and do not have whitespaces!!!! " ;;
 	esac
 done
-cd ..;
+
 source DatabaseEngine.sh

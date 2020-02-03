@@ -17,5 +17,5 @@ function list_Databases() {
 }
 
 list_Databases
-cd ..;
-source $(pwd)/DatabaseEngine.sh
+
+source $(pwd)/DBEngine/DatabaseEngine.sh

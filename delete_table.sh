@@ -26,8 +26,8 @@ source $(pwd)/use_Database.sh
   +([a-zA-Z]))
     #check if tha table exist...
 
-     source /home/salah/bash-Project/clone/DBEngine/check_table_exist.sh ${table_name}
-    if [ $? -eq 0 ]; then
+    file_exist 
+    if [ $? -eq 1 ]; then
       #delete table..
       rm -R $table_name
       echo "table deleted"
@@ -44,6 +44,7 @@ source $(pwd)/use_Database.sh
   esac
 
 done
+source $(pwd)/DatabaseEngine.sh
 cd ..;
 source $(pwd)/DatabaseEngine.sh
-
+source $(pwd)/DatabaseEngine.sh

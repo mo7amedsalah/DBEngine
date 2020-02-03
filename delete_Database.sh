@@ -1,7 +1,7 @@
 #!/bin/bash
 LC_ALL=C
 shopt -s extglob
-
+source "functions"
 clear
 # source $(pwd)/"functions"
 
@@ -25,10 +25,10 @@ clear
     #the valid regix for name..
   +([a-zA-Z]))
     #check if tha database exist...
-    source CheckIfDatabaseExist.sh ${database_name}
+    check_database_exist "$database_name"
 
-    if [ $? -eq 0 ]; then
-      #delete database..
+    if [ $? -eq 1 ]; then
+      #delete database1.
       rm -R $database_name
       echo "Database deleted "
       echo "---------------------------------------------------"
@@ -44,8 +44,8 @@ clear
     echo "Invalid database name!! name of database must be lower or upper letters or mix and do not have whitespaces!!!! "
     ;;
   esac
+source $(pwd)/DatabaseEngine.sh
 
-done
  	
 source $(pwd)/DatabaseEngine.sh
 

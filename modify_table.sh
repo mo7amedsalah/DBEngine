@@ -134,5 +134,5 @@ do
 fi
 done
 
-cd ..;
+
 source $(pwd)/DatabaseEngine.sh

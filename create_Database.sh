@@ -23,8 +23,8 @@ while true; do
 		#the valid regix for name..
 	+([a-zA-Z]))
 		#check if tha database created before ...
-		$(pwd)/CheckIfDatabaseExist.sh "$database_name"
-		if [ $? -eq 0 ]; then
+		check_database_exist "$database_name"
+		if [ $? -eq 1 ]; then
 			echo "-----------------------------------------------------------------------"
 			echo "This database was created before!!!!!!!"
 
@@ -48,5 +48,5 @@ while true; do
 	esac
 
 done
-
+echo $(pwd)
 source $(pwd)/DatabaseEngine.sh

@@ -46,7 +46,7 @@ select choice in CreateDatabase CreateTable DeleteDB DeleteTable ModifyTable Ins
 		
  
 
-               ShowDataBases)
+               ShowDataBase)
                 ./show_Database.sh
                 ;;
                ShowTables)
