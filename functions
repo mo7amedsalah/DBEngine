@@ -1,12 +1,17 @@
 
 function check_data_type
 {
-
-  echo "please enter it' datatype number or string:"
-  read data_type
     while true
     do
-    if [ $data_type == "number" ];then
+  echo "please enter it' datatype number or string:"
+  read data_type
+
+   
+    if [[ -z $data_type ]]
+    then
+     echo "must not be empty"
+ 
+     elif [ $data_type == "number" ];then
      echo "your datatype is number" 
      data_types+=("$data_type")
      echo "your pk type is recorded"
@@ -20,6 +25,7 @@ function check_data_type
      break
 
      else
+   
      echo "this type is not supported" 
    break
 
@@ -36,6 +42,27 @@ function file_exist
    else
    return 0
    fi
+
+}
+function check_database_exist() 
+{
+if [ -d $1 ]; then
+  return 1
+else
+  return 0
+fi
+
+
+} 
+
+function print_names() {
+	for i in "${column_names[@]}"; do
+		printf '%s' "$i:" >>"$filename"
+                printf '%s' "$i      |" 
+
+
+	done
+	printf "\n" >>"$filename"
 
 }
 function get_structure_of_table

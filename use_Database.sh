@@ -9,9 +9,12 @@ function CheckIfDatabaseExist() {
 	fi
 }
 
-clear
 
-echo "Enter Database Name!!!!!!!!!!!"
+
+while true
+do
+
+echo "Enter Database Name:"
 read database_name
 #validate if name of database is true ..
 case $database_name in
@@ -30,14 +33,22 @@ case $database_name in
 +([a-zA-Z]))
 	#check if tha database created before ...
 	if CheckIfDatabaseExist; then
+             
 		cd $database_name
+                 break
+
+                 
+                
 	else
 		#if database does not exist..
 		echo "-----------------------------------------------------------------------"
 		echo "No database with this name!!!!!!!!!!"
-		source /home/salah/bash-Project/DBEngine/DatabaseEngine.sh
+                source /home/sabreensalama/Desktop/bash/project/DBEngine/DatabaseEngine.sh
+
+   
 	fi
 	;;
 
-*) echo "Invalid database name!! name of database must be lower or upper letters or mix and do not have whitespaces!!!! " ;;
+*) echo "Invalid database name!! name of database must be alphabtic " ;;
 esac
+done

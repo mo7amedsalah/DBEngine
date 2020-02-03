@@ -2,99 +2,135 @@
 #filename is a global variable
 # <<< to pass a string
 data=()
-source /home/salah/bash-Project/DBEngine/"functions"
+source /home/sabreensalama/Desktop/bash/project/DBEngine/"functions"
+source /home/sabreensalama/Desktop/bash/project/DBEngine/use_Database.sh
+
+
+#filename is a global variable
+# <<< to pass a string
+data=()
+
 
 # erroe regex / is accepted
-function insert_check_primary() {
-	while true; do
-		echo "this column data type is ${col_types[0]} "
-		echo "enter the primary value"
-		read pvalue
+function insert_check_primary
+{
+while true
+do 
+   echo "this column data type is ${col_types[0]} "
+   echo "enter the primary value"
+   read pvalue
 
-		if [[ -z $pvalue ]]; then
-			echo "must not be empty"
-			echo "try again"
-		elif [[ $pvalue =~ ^[a-zA-Z]+$ ]]; then
-			echo "must be a number"
+    if [[ -z $pvalue ]]
+     then
+     echo "must not be empty"
+     echo "try again"
+     echo "--------------------------------------"
+     elif [[ $pvalue =~ ^[a-zA-Z]+$ ]]
+    then
+          echo "must be a number"
+   
+    else
+    check_pk "$pvalue"
 
-		else
-			check_pk "$pvalue"
-
-			repeat="$?"
-			if [ "$repeat" -eq 1 ]; then
-				echo "repeated"
-			elif [ ! "$repeat" -eq 1 ]; then
-				echo "not repeated data"
-				data+=("$pvalue")
-				break
-			else
-				echo "invalid"
-			fi
-		fi
-
-	done
+   repeat="$?"
+    if [ "$repeat" -eq 1 ]
+    then
+          echo "repeated"
+    elif [  ! "$repeat" -eq 1 ]
+     then
+          echo "not repeated data"
+          data+=("$pvalue")
+          break
+     else
+       echo "invalid"
+    fi
+    fi
+    
+done  
 }
 
-function insert_data() {
 
-	reg=""
-	insert_check_primary
+function insert_data
+{
 
-	echo "${#col_names[@]}"
-	length=${#col_names[@]}
-	for ((i = 1; i < length; i++)); do
-		while true; do
-			echo "this column data type is ${col_types[$i]} "
-			echo "enter the $i data"
-			read value
-			if [ ${col_types[$i]} = "number" ]; then
+	 reg=""
+	 insert_check_primary
 
-				reg="^[0-9]+$"
+	  echo "${#col_names[@]}"
+	 length=${#col_names[@]}
+	  for ((i=1;i<length;i++))
+	  do
+                 while true
+		 do		
+	        echo "this column data type is ${col_types[$i]} "
+	        echo "enter the $i data"
+	        read value
+	        if [ ${col_types[$i]} = "number" ]
+	        then
 
-			elif [ ${col_types[$i]} = "string" ]; then
-				reg="^[a-zA-Z]+$"
-			else
-				echo "not vaid type"
-			fi
+		   reg="^[0-9]+$"
 
-			if [[ "$value" =~ $reg ]]; then
-				data+=("$value")
-				echo "your data saved successfully"
+	         elif [ ${col_types[$i]} = "string" ]
+		 then
+		    reg="^[a-zA-Z]+$"
+		 else
+		   echo "not vaid type"
+	         fi
 
-				break
+	         if [[ "$value" =~ $reg ]]
+	         then
+                   data+=("$value")
+	           echo "your data saved successfully"
+	           
+                   break
 
-			else
-				echo "not valid"
-			fi
-		done
-
-	done
+	        else
+	        echo "not valid"
+	        fi
+          done
+	  
+	  done
 
 }
-source /home/salah/bash-Project/DBEngine/use_Database.sh;
-while true; do
+
+while true
+do
 	echo "Enter Your File Name:"
 	read filename
 	file_exist
 	#to check status
 	result="$?"
-	if [[ "$result" -eq 1 ]]; then
+	if [[ "$result" -eq 1 ]]
+	then
 
 		get_structure_of_table
 		insert_data
+                
+                for i in "${col_names[@]}"; do
+			printf '%s' "$i    |" 
 
-		for value in "${data[@]}"; do
-			printf '%s' "$value:" >>"$filename"
-		done
-		printf "\n" >>"$filename"
-		break
 
-	elif [[ -z "$filename" ]]; then
-		echo "you  must enter table name"
+
+	        done
+                        printf "\n"
+			printf "\n" >>"$filename"
+
+		for value in "${data[*]}"
+		  do
+		      printf '%s' "$value:" >>"$filename"
+                       printf '%s' "$value   |"
+		  done
+		   #printf "\n" >>"$filename"
+                   printf "\n"
+		   break
+
+	 elif [[ -z "$filename" ]]
+	 then
+		     echo "you  must enter table name"
 	else
-		echo "this name is not valid or file is existed"
+	     echo "this name is not valid or file is existed"
 	fi
 
 done
-cd /home/salah/bash-Project/DBEngine
-./ DatabaseEngine.sh
+cd /home/sabreensalama/Desktop/bash/project/DBEngine/
+source /home/sabreensalama/Desktop/bash/project/DBEngine/DatabaseEngine.sh

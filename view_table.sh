@@ -2,7 +2,8 @@
 LC_ALL=C
 shopt -s extglob
 clear
-source /home/salah/bash-Project/DBEngine/use_Database.sh
+source "functions"
+source /home/sabreensalama/Desktop/bash/project/DBEngine/use_Database.sh
 while true; do
 
 	echo "Enter Table Name!!!!!!!!!!!"
@@ -23,7 +24,7 @@ while true; do
 	+([a-zA-Z]))
 
 		#IF table is Exist show the structure...
-		source /home/salah/bash-Project/DBEngine/check_table_exist.sh ${table_name}
+		file_exist "$table_name"
 		if [ $? -eq 0 ]; then
 			echo "-----------------------------------------------------------------------"
 			echo "This are The names of columns in $table_name"
@@ -38,18 +39,18 @@ while true; do
 			echo "-----------------------------------------------------------------------"
 			awk 'NR > 3 { print }' $table_name
 			echo "-----------------------------------------------------------------------"
-			source /home/salah/bash-Project/DBEngine/DatabaseEngine.sh
+			break
 		else
 			#IF table is not exist
 
 			echo "-----------------------------------------------------------------------"
 			echo "The table is not exist"
-			source /home/salah/bash-Project/DBEngine/DatabaseEngine.sh
+
 		fi
 		;;
 
 	*) echo "Invalid Table name!! name of Table must be lower or upper letters or mix and do not have whitespaces!!!! " ;;
 	esac
 done
-cd /home/salah/bash-Project/DBEngine
-source /home/salah/bash-Project/DBEngine/DatabaseEngine.sh
+cd /home/sabreensalama/Desktop/bash/project/DBEngine/
+source /home/sabreensalama/Desktop/bash/project/DBEngine/DatabaseEngine.sh

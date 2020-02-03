@@ -3,16 +3,18 @@ LC_ALL=C
 shopt -s extglob
 
 clear
-source /home/salah/bash-Project/DBEngine/use_Database.sh
+source "functions"
+source /home/sabreensalama/Desktop/bash/project/DBEngine/use_Database.sh
+
 while true; do
-  echo "Enter Table Name you want delete!!!!!!!!!!!"
+  echo "Enter Table Name you want delete"
   read table_name
   #validate if name of table is true ..
   case $table_name in
   #validate that the name must have not white spaces..
 
   *\ *)
-    echo "-----------------------------------------------------------------------"
+
     echo "Invalid table name!! the name must be without no spaces..!! "
     ;;
     #validate that the name must be letters only..
@@ -23,23 +25,22 @@ while true; do
     #the valid regix for name..
   +([a-zA-Z]))
     #check if tha table exist...
-    source /home/salah/bash-Project/DBEngine/check_table_exist.sh ${table_name}
-    if [ $? -eq 0 ]; then
+     file_exist "$table_name"
+    if [ $? -eq 1 ]; then
       #delete table..
       rm -R $table_name
-      echo "-----------------------------------------------------------------------"
-      echo "table deleted!!!!!!!!!"
-      source /home/salah/bash-Project/DBEngine/DatabaseEngine.sh
+      echo "table deleted"
+      break
     else
-      echo "-----------------------------------------------------------------------"
-      echo "No table with this name!!!!!!!!!!"
+      echo "-----------------------------------------------------"
+      echo "No table with this name"
     fi
     ;;
   *)
     echo "-----------------------------------------------------------------------"
-    echo "Invalid table name!! name of table must be lower or upper letters or mix and do not have whitespaces!!!! "
+    echo "Invalid table name!! name of table must be lower or upper letters or mix and do not have whitespaces"
     ;;
   esac
 done
-cd /home/salah/bash-Project/DBEngine
-source /home/salah/bash-Project/DBEngine/DatabaseEngine.sh
+cd /home/sabreensalama/Desktop/bash/project/DBEngine/
+source /home/sabreensalama/Desktop/bash/project/DBEngine/DatabaseEngine.sh
