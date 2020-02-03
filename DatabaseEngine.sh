@@ -1,14 +1,17 @@
 #!/bin/bash
 
+
 #export PATH=$PATH:$PWD
 select choice in CreateDatabase CreateTable DeleteDB DeleteTable ModifyTable InsertDataIntoTable ViewTable DescribeTable ShowDataBase ShowTables DeleteRecord SelectRecordByID Exit; do
+
+
+
         case $choice in
         CreateDatabase)
                 ./create_Database.sh
                  
                 ;;
-                # UseDataBase )
-                #	source 	/home/salah/bash-Project/DBEngine/use_Database.sh ;;
+                
 
         CreateTable)
                 ./create_table.sh
@@ -37,23 +40,28 @@ select choice in CreateDatabase CreateTable DeleteDB DeleteTable ModifyTable Ins
                 ViewTable)
                 ./view_table.sh
                 ;;
+		DescribeTable)
+		./describe_table.sh
+		;;
+		
  
 
-        ShowDataBase)
+               ShowDataBases)
                 ./show_Database.sh
                 ;;
-        ShowTables)
+               ShowTables)
                 ./show_tables.sh
                 ;;
 
-        DeleteRecord)
+               DeleteRecord)
                ./delete_record.sh
                 ;;
-        SelectRecordByID)
+               SelectRecordByID)
                 ./print_record.sh
                 ;;
-        Exit)
-                exit
+               Exit)
+                   
+			exit
                 ;;
         *)
                 echo "$REPLY is not one of the choices"

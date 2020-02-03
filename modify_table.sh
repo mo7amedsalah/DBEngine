@@ -1,7 +1,7 @@
 #!/bin/bash
 new_arr=()	
-source "functions"
-source /home/sabreensalama/Desktop/bash/project/DBEngine/use_Database.sh
+source $(pwd)/"functions";
+source $(pwd)/use_Database.sh;
 
 function get_check_line
 {
@@ -134,5 +134,5 @@ do
 fi
 done
 
-cd /home/sabreensalama/Desktop/bash/project/DBEngine/
-source /home/sabreensalama/Desktop/bash/project/DBEngine/DatabaseEngine.sh
+cd ..;
+source $(pwd)/DatabaseEngine.sh

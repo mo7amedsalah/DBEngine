@@ -3,7 +3,7 @@ LC_ALL=C
 shopt -s extglob
 
 clear
-source "functions"
+# source $(pwd)/"functions"
 
   echo "Enter Database Name you want delete : "
   read database_name
@@ -25,8 +25,9 @@ source "functions"
     #the valid regix for name..
   +([a-zA-Z]))
     #check if tha database exist...
-    check_database_exist "$database_name"
-    if [ $? -eq 1 ]; then
+    source CheckIfDatabaseExist.sh ${database_name}
+
+    if [ $? -eq 0 ]; then
       #delete database..
       rm -R $database_name
       echo "Database deleted "
@@ -44,5 +45,7 @@ source "functions"
     ;;
   esac
 
-cd /home/sabreensalama/Desktop/bash/project/DBEngine/
-source /home/sabreensalama/Desktop/bash/project/DBEngine/DatabaseEngine.sh
+done
+ 	
+source $(pwd)/DatabaseEngine.sh
+

@@ -2,7 +2,7 @@
 LC_ALL=C
 shopt -s extglob
 clear
-source /home/salah/bash-Project/DBEngine/use_Database.sh
+source $(pwd)/use_Database.sh
 while true; do
 	echo "Enter Table Name!!!!!!!!!!!"
 	IFS= read -r table_name
@@ -32,18 +32,18 @@ while true; do
 			awk 'NR == 3 { print }' $table_name
 			echo "-----------------------------------------------------------------------"
 
-			source /home/salah/bash-Project/DBEngine/DatabaseEngine.sh
+			break
 		else
 			#IF table is not exist
 
 			echo "-----------------------------------------------------------------------"
 			echo "The table is not exist"
-			source /home/salah/bash-Project/DBEngine/DatabaseEngine.sh
+			source $(pwd)/DatabaseEngine.sh
 		fi
 		;;
 
 	*) echo "Invalid Table name!! name of Table must be lower or upper letters or mix and do not have whitespaces!!!! " ;;
 	esac
 done
-cd /home/salah/bash-Project/DBEngine
-source /home/salah/bash-Project/DBEngine/DatabaseEngine.sh
+cd ..;
+source $(pwd)/DatabaseEngine.sh

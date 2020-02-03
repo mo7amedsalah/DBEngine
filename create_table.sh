@@ -4,8 +4,8 @@ re='^[a-zA-Z]+$'
 column_names=()
 data_types=()
 
-source /home/sabreensalama/Desktop/bash/project/DBEngine/"functions"
-source /home/sabreensalama/Desktop/bash/project/DBEngine/use_Database.sh
+source $(pwd)/"functions"
+source $(pwd)/use_Database.sh
 
 function check_column_number() {
 	while true; do
@@ -141,5 +141,5 @@ while true; do
 	fi
 done
 
-cd /home/sabreensalama/Desktop/bash/project/DBEngine/
-source /home/sabreensalama/Desktop/bash/project/DBEngine/DatabaseEngine.sh
+cd ..;
+source $(pwd)/DatabaseEngine.sh
