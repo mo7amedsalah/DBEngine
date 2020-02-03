@@ -17,5 +17,5 @@ function list_Databases() {
 }
 
 list_Databases
-cd /home/sabreensalama/Desktop/bash/project/DBEngine/
-source /home/sabreensalama/Desktop/bash/project/DBEngine/DatabaseEngine.sh
+cd ..;
+source $(pwd)/DatabaseEngine.sh

@@ -1,6 +1,6 @@
 #!/bin/bash
-source "functions"
-source /home/sabreensalama/Desktop/bash/project/DBEngine/use_Database.sh
+source $(pwd)/"functions"
+source $(pwd)/use_Database.sh
 
 function get_Data
 {
@@ -55,5 +55,5 @@ else
 echo "your file does not exist"
 fi
 done
-cd /home/sabreensalama/Desktop/bash/project/DBEngine/
-source /home/sabreensalama/Desktop/bash/project/DBEngine/DatabaseEngine.sh
+cd ..;
+source $(pwd)/DatabaseEngine.sh

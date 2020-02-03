@@ -2,21 +2,20 @@
 LC_ALL=C
 shopt -s extglob
 clear
-source /home/sabreensalama/Desktop/bash/project/DBEngine/use_Database.sh
-function list_Tables() {
+source use_Database.sh
+function list_Tables {
   echo
   echo "This Is All Tables"
-  echo "-------------------------------------------"
+  echo "-----------------------------------------------------------------------!!"
   for i in *; do
     if [ -f ./"$i" ]; then
       echo $i
 
     fi
   done
-  echo "-------------------------------------------"
+  echo "-----------------------------------------------------------------------!!"
 }
 
 list_Tables
-
-cd /home/sabreensalama/Desktop/bash/project/DBEngine/
-source /home/sabreensalama/Desktop/bash/project/DBEngine/DatabaseEngine.sh
+cd ..;
+source $(pwd)/DatabaseEngine.sh;

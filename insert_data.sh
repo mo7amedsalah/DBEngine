@@ -1,9 +1,10 @@
 #!/bin/bash
 #filename is a global variable
 # <<< to pass a string
+clear
 data=()
-source /home/sabreensalama/Desktop/bash/project/DBEngine/"functions"
-source /home/sabreensalama/Desktop/bash/project/DBEngine/use_Database.sh
+source $(pwd)/"functions";
+source $(pwd)/use_Database.sh;
 
 
 #filename is a global variable
@@ -132,5 +133,5 @@ do
 	fi
 
 done
-cd /home/sabreensalama/Desktop/bash/project/DBEngine/
-source /home/sabreensalama/Desktop/bash/project/DBEngine/DatabaseEngine.sh
+cd ..;
+source $(pwd)/DatabaseEngine.sh;
