@@ -6,7 +6,7 @@ clear
 source "functions"
 source /home/sabreensalama/Desktop/bash/project/DBEngine/use_Database.sh
 
-while true; do
+
   echo "Enter Table Name you want delete"
   read table_name
   #validate if name of table is true ..
@@ -30,7 +30,7 @@ while true; do
       #delete table..
       rm -R $table_name
       echo "table deleted"
-      break
+
     else
       echo "-----------------------------------------------------"
       echo "No table with this name"
@@ -41,6 +41,6 @@ while true; do
     echo "Invalid table name!! name of table must be lower or upper letters or mix and do not have whitespaces"
     ;;
   esac
-done
+
 cd /home/sabreensalama/Desktop/bash/project/DBEngine/
 source /home/sabreensalama/Desktop/bash/project/DBEngine/DatabaseEngine.sh

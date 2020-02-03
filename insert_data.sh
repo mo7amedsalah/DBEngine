@@ -28,7 +28,9 @@ do
      elif [[ $pvalue =~ ^[a-zA-Z]+$ ]]
     then
           echo "must be a number"
-   
+    elif [[ $pvalue == 0 ]]
+    then
+        echo "not accepted"
     else
     check_pk "$pvalue"
 
@@ -36,6 +38,7 @@ do
     if [ "$repeat" -eq 1 ]
     then
           echo "repeated"
+          echo "try again"
     elif [  ! "$repeat" -eq 1 ]
      then
           echo "not repeated data"
@@ -105,23 +108,22 @@ do
 
 		get_structure_of_table
 		insert_data
-                
+                echo "------------------------------------------"
                 for i in "${col_names[@]}"; do
 			printf '%s' "$i    |" 
-
-
-
 	        done
-                        printf "\n"
-			printf "\n" >>"$filename"
+                  printf "\n"
+             	  printf "\n" >>"$filename"
+                   get_All_Data
 
 		for value in "${data[*]}"
 		  do
 		      printf '%s' "$value:" >>"$filename"
-                       printf '%s' "$value   |"
+                     printf '%s' "$value:"
 		  done
-		   #printf "\n" >>"$filename"
                    printf "\n"
+
+                   echo "------------------------------------------"
 		   break
 
 	 elif [[ -z "$filename" ]]

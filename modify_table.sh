@@ -37,13 +37,15 @@ function get_data_of_table
 {
 get_check_line
 line_ret=$?
-echo "$line_ret" 
+
  edit=$(sed -n "$line_ret p" "$filename")
 IFS=":" read -r -a edit_arr <<< "$edit"
-length="${#edit_arr[@]}"
- echo "$length"
-for ((j=0;j<length;j++))
+len="${#edit_arr[@]}"
+
+
+for ((j=0;j<len;j++))
  do
+	
   while true
   do
  echo "this column data type is ${col_types[$j]} "
@@ -121,6 +123,11 @@ do
 	echo "your file found"
 	  get_structure_of_table
 	  get_data_of_table
+             for i in "${col_names[@]}"; do
+		 printf '%s' "$i    |" 
+	        done
+                  printf "\n"
+                   get_All_Data
           break
 	else
 	echo "your file does not exist"

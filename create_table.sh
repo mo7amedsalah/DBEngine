@@ -74,6 +74,8 @@ function read_column_data() {
 		while true; do
 			if [[ -z "$column" ]]; then
 				echo "your column name must not be empty"
+                        elif [[ $primary_key =~ ^[0-9]+$ ]]; then
+			echo "your key must be alphabatic"
 			else
 				check_data_type
 				column_names+=("$column")

@@ -1,5 +1,6 @@
 #!/bin/bash
 
+#export PATH=$PATH:$PWD
 select choice in CreateDatabase CreateTable DeleteDB DeleteTable ModifyTable InsertDataIntoTable ViewTable DescribeTable ShowDataBase ShowTables DeleteRecord SelectRecordByID Exit; do
         case $choice in
         CreateDatabase)

@@ -5,9 +5,10 @@ shopt -s extglob
 clear
 source "functions"
 
-while true; do
   echo "Enter Database Name you want delete : "
   read database_name
+
+
   #validate if name of database is true ..
   case $database_name in
   #validate that the name must have not white spaces..
@@ -30,7 +31,7 @@ while true; do
       rm -R $database_name
       echo "Database deleted "
       echo "---------------------------------------------------"
-      break
+     
 
     else
       echo "---------------------------------------------------"
@@ -42,6 +43,6 @@ while true; do
     echo "Invalid database name!! name of database must be lower or upper letters or mix and do not have whitespaces!!!! "
     ;;
   esac
-done
+
 cd /home/sabreensalama/Desktop/bash/project/DBEngine/
 source /home/sabreensalama/Desktop/bash/project/DBEngine/DatabaseEngine.sh

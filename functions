@@ -78,11 +78,9 @@ function get_structure_of_table
 }
 function check_pk
 {
-
-	  ids=$(awk -F":" 'NR>3 {print $pk}' "$filename" | cut -d":" -f$pk | tr '\n' ' ')
-	     echo "$ids"
+         	  #ids=$(awk -F":" 'NR>3 {print '$'$pk}' "$filename" | cut -f $pk )
+	  ids=$(awk -F":" 'NR>3 {print '$'$pk}' "$filename" | cut -d":" -f $pk | tr '\n' ' ')
 	    read -r -a myids <<< "$ids"
-	    echo "myids is ${myids[@]}"
 	   
 	   length="${#myids[@]}" 
 	  flag=0
@@ -103,6 +101,14 @@ function check_pk
 	  done
 	  return $flag
 	 
+
+}
+function get_All_Data
+{
+
+  names=$(awk 'NR>3' "$filename")
+  echo "$names"
+  
 
 }
 
