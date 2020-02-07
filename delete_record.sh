@@ -1,66 +1,68 @@
+
 #!/bin/bash
-source $(pwd)/"functions"
+clear
+source "functions"
+
 source $(pwd)/use_Database.sh
 
-function get_Data
+function get_data_row
 {
-  while true
-  do
-  mydata=$(sed '1,3d' "$filename")
-  echo "$mydata"
-  echo "enter the line you want to delete"
-  read line
-    if [[ $line -eq 0 ]]
-    then
-    echo "you have no record"
-    fi 
-  if [[ "$line" =~ ^[1-9]+$ ]]
-  then
-  line=$((line+3))
-   #i to remove from source
-    boy=$(awk "END {print NR}" "$filename")
-		if [ $line -lt $boy ]
-	     then
-	    sed -i "$line d" "$filename"
-	    echo "your record is deleted "
-	    echo "---------------------------------"
-	    break
-	     else
-	     echo "you entered wrong number"
-		break
-             fi
-  elif [[ -z "$line" ]]
-  then
-  echo "must not be empty"
-  elif [[ "$line" =~ ^[a-zA-Z]+$ ]]
-  then
-  echo "must be numeric "
+         	  #ids=$(awk -F":" 'NR>3 {print '$'$pk}' "$filename" | cut -f $pk )
+	  ids=$(awk -F":" 'NR>3 {print '$'$pk}' "$filename" | cut -d":" -f $pk | tr '\n' ' ')
+	    read -r -a myids <<< "$ids"
+	   
+	   length="${#myids[@]}" 
 
- else
-  echo "not valid"
- fi
-done
-  
+	flage=0   
+	  for ((i=0;i<length;i++)) 
+	  do
+
+	     if [[ ${myids[$i]} == $1 ]]
+	     then
+                flage=1
+                 break
+           else
+
+                   flage=0
+            fi
+	  done
+     if [[ "$flage" -eq 1 ]]
+      then
+            #grep "^${myids[$i]}" "$filename"
+           grep -v "^${myids[$i]}" "$filename" > temp && mv temp "$filename"
+           echo "your ${myids[$i]} deleted successfully "
+
+      else
+         echo "not found"
+      fi
+
 }
 
-
-
-while true
-do
 echo "enter your file:"
 read filename
-file_exist ${filename}
 
-#to check status
-result="$?"
-if [[ "$result" -eq 1 ]]
+
+if [[ -f "$filename" ]]
 then
-echo "your file found"
-  get_Data
-  break
+
+	  echo "your file found"
+	  echo "enter the id :"
+	  read readline
+             if [[ "$readline" =~ ^[1-9]+$ ]]
+             then
+     
+             get_structure_of_table
+             get_data_row "$readline"
+
+
+           
+             else
+                  echo "invalid value"
+           fi
+	   
 else
 echo "your file does not exist"
 fi
-done
+
 cd ..
 source "DatabaseEngine.sh";

@@ -1,6 +1,8 @@
 #!/bin/bash
+clear
 new_arr=()	
-source $(pwd)/"functions";
+
+source "functions";
 source $(pwd)/use_Database.sh;
 
 function get_check_line
@@ -48,12 +50,16 @@ for ((j=0;j<len;j++))
 	
   while true
   do
- echo "this column data type is ${col_types[$j]} "
+
  echo "your old value is ${edit_arr[$j]}"
-  echo "enter your new value of $j "
+  echo "enter your new value : "
   read value
  
-
+               	if [[ -z $value ]]
+		       then
+		        value=${edit_arr[$j]}
+                      break
+                    fi
 
    if [ ${col_types[$j]} = "number" ]
    then
@@ -63,20 +69,22 @@ for ((j=0;j<len;j++))
 	   then
 	    check_pk "$value"
 	    repeat="$?"
-	    if [ "$repeat" -eq 1 ]
-	    then
-		  echo "repeated"
-	    elif [  ! "$repeat" -eq 1 ]
-	     then
-	     echo "not repeated data"
-	     new_arr+=("$value")
-	     sed -i "$line s/${edit_arr[$j]}/$value/g" "$filename"
-             break
-	   elif [[ -z $value ]]
-             then
-	     value=${edit_arr[$j]}
-             break
-	   fi
+ 
+
+		    if [ "$repeat" -eq 1 ]
+		    then
+			  echo "repeated"
+		    elif [  ! "$repeat" -eq 1 ]
+		     then
+		     echo "not repeated data"
+		     new_arr+=("$value")
+		     sed -i "$line s/${edit_arr[$j]}/$value/g" "$filename"
+		       break
+
+                else
+                     echo "not valid"
+		       
+		   fi
           fi
 
    elif [ ${col_types[$j]} = "string" ]
@@ -104,7 +112,7 @@ done
     echo "${new_arr[@]}"
 
   printf "\n"
-																				    echo "your record is edited "
+					    echo "your record is edited "
 																				  
 
 }
@@ -114,13 +122,11 @@ while true
 do
 	echo "enter your file:"
 	read filename
-	file_exist ${filename}
 
-	#to check status
-	result="$?"
-	if [[ "$result" -eq 1 ]]
+
+	if [[ -f "$filename" ]]
 	then
-	echo "your file found"
+
 	  get_structure_of_table
 	  get_data_of_table
              for i in "${col_names[@]}"; do

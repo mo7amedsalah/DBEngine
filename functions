@@ -14,14 +14,14 @@ function check_data_type
      elif [ $data_type == "number" ];then
      echo "your datatype is number" 
      data_types+=("$data_type")
-     echo "your pk type is recorded"
+
      break
 
      elif [ $data_type == "string" ] 
      then
      echo "your datatype is string"
      data_types+=("$data_type")
-     echo "your pk type is recorded"
+
      break
 
      else

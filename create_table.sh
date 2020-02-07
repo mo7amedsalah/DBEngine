@@ -27,7 +27,7 @@ function check_column_number() {
 function check_index_primary_key() {
 
 	while true; do
-		echo "Enter index of primary key "
+		echo "Enter location of primary key "
 		read pk_index
           
                  
@@ -45,7 +45,7 @@ function check_index_primary_key() {
 function primary_key() {
 	check_index_primary_key
 	while true; do
-		echo "Enter your column name:"
+		echo "Enter your  column name :"
 		read primary_key
 
 		#if not empty and not repeated
@@ -69,7 +69,7 @@ function primary_key() {
 
 function read_column_data() {
 	for ((i = 1; i < columnNo; i++)); do
-		echo "Enter the column name:"
+		echo "Enter the $i column name:"
 		read column
 		while true; do
 			if [[ -z "$column" ]]; then

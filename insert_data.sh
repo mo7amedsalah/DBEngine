@@ -3,7 +3,7 @@
 # <<< to pass a string
 clear
 data=()
-source $(pwd)/"functions";
+source "functions";
 source $(pwd)/use_Database.sh;
 
 
@@ -67,7 +67,7 @@ function insert_data
                  while true
 		 do		
 	        echo "this column data type is ${col_types[$i]} "
-	        echo "enter the $i data"
+	        echo "enter the $ $i data"
 	        read value
 	        if [ ${col_types[$i]} = "number" ]
 	        then
@@ -99,12 +99,10 @@ function insert_data
 
 while true
 do
-	echo "Enter Your File Name:"
+	echo "Enter Your Table Name:"
 	read filename
-	file_exist
-	#to check status
-	result="$?"
-	if [[ "$result" -eq 1 ]]
+
+	if [[ -f "$filename" ]]
 	then
 
 		get_structure_of_table

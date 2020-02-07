@@ -1,5 +1,6 @@
 #!/bin/bash
 LC_ALL=C
+clear
 function list_Databases() {
   echo
   echo "This Is All DataBases"

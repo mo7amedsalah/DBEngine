@@ -54,10 +54,12 @@ select choice in CreateDatabase CreateTable DeleteDB DeleteTable ModifyTable Ins
                 ;;
 
                DeleteRecord)
-               ./delete_record.sh
+              
+                ./delete_record.sh
                 ;;
                SelectRecordByID)
-                ./print_record.sh
+               # ./print_record.sh
+                 ./print_record.sh
                 ;;
                Exit)
                    
