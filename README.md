@@ -16,10 +16,10 @@ The aim of the project is to create a database engine using bash and linux  comm
 
 
 
-## installation 
+## Installation 
 * shell script
 
 # how to run 
 * run  DatabaseEngine.sh
 
-## created by mohamed salah and Sabreen Salama ITI Intake 40
+## created by mohamed salah and Sabreen Salama @ITI Intake 40
